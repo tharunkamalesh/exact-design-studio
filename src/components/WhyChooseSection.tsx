@@ -1,4 +1,4 @@
-import solarPanelsBg from '@/assets/solar-panels-bg.jpg';
+import aboutUsBg from '@/assets/about-us.jpeg';
 
 const features = [
   {
@@ -39,22 +39,25 @@ const WhyChooseSection = () => {
       id="about"
       className="relative min-h-screen py-20"
       style={{
-        backgroundImage: `url(${solarPanelsBg})`,
+        backgroundImage: `url(${aboutUsBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+        backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="absolute inset-0 bg-navy/60" />
+      {/* Very light dark overlay (5-8% opacity) for text readability */}
+      <div className="absolute inset-0 bg-black/5" />
 
       <div className="relative z-10 container mx-auto px-6">
         <div className="max-w-4xl mb-16">
-          <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl text-primary-foreground font-bold mb-6 italic">
+          <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl text-primary-foreground font-bold mb-6 italic" 
+              style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
             Why Choose King
             <br />
             Power Systems?
           </h2>
-          <p className="text-primary-foreground/80 text-sm md:text-base max-w-2xl">
+          <p className="text-primary-foreground/80 text-sm md:text-base max-w-2xl" 
+             style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
             With over 25 years of trusted services in the electrical and renewable energy sector, King Power Systems delivers reliable, efficient, and sustainable solar solutions tailored for homes and businesses. Our expertise spans solar systems, UPS & batteries, stabilizers, inverters, and solar lighting — ensuring dependable energy wherever you need it.
           </p>
         </div>
@@ -62,10 +65,12 @@ const WhyChooseSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {features.map((feature, index) => (
             <div key={index} className="group">
-              <h3 className="font-playfair text-xl md:text-2xl text-primary-foreground font-semibold mb-3 italic">
+              <h3 className="font-playfair text-xl md:text-2xl text-primary-foreground font-semibold mb-3 italic" 
+                  style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
                 {feature.title}
               </h3>
-              <p className="text-primary-foreground/70 text-sm leading-relaxed">
+              <p className="text-primary-foreground/70 text-sm leading-relaxed" 
+                 style={{ textShadow: '0 1px 1px rgba(0,0,0,0.2)' }}>
                 {feature.description}
               </p>
             </div>
