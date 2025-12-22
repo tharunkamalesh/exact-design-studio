@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import servicesBg from '@/assets/services-bg.jpg';
+import ourSolarServicesBg from '@/assets/our solar services.jpeg';
 import serviceSolarPanels from '@/assets/service-solar-panels.jpg';
 import serviceInverters from '@/assets/service-inverters.jpg';
 import serviceIndustrial from '@/assets/service-industrial.jpg';
@@ -73,7 +73,7 @@ const ServicesSection = () => {
       id="services"
       className="relative min-h-screen py-20"
       style={{
-        backgroundImage: `url(${servicesBg})`,
+        backgroundImage: `url(${ourSolarServicesBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

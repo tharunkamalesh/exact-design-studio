@@ -1,4 +1,4 @@
-import crownLogo from '@/assets/crown-logo.png';
+import kingLogo from '@/assets/king logo.png';
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <img src={crownLogo} alt="King Power Systems" className="h-12 w-12 object-contain" />
+              <img src={kingLogo} alt="King Power Systems" className="h-12 w-12 object-contain" />
               <span className="text-primary-foreground font-playfair text-lg font-bold">KING</span>
             </div>
             <p className="text-primary-foreground/70 text-sm">
