@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import kingLogo from '@/assets/king logo.png';
 
 const navLinks = [
@@ -11,6 +11,71 @@ const navLinks = [
 
 const HeroSection = () => {
   const [activeLink, setActiveLink] = useState('Home');
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subtext1Ref = useRef<HTMLParagraphElement>(null);
+  const subtext2Ref = useRef<HTMLParagraphElement>(null);
+  
+  // Scroll animation effect
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const animateElement = (element: HTMLElement, delay: number = 0) => {
+      setTimeout(() => {
+        element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }, delay);
+    };
+    
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          
+          // Animate elements in sequence
+          if (element.id === 'badge-text') {
+            animateElement(element, 0);
+            
+            // Animate subsequent elements with delays
+            setTimeout(() => {
+              if (headingRef.current) {
+                animateElement(headingRef.current, 300);
+              }
+            }, 400);
+            
+            setTimeout(() => {
+              if (subtext1Ref.current) {
+                animateElement(subtext1Ref.current, 600);
+              }
+            }, 700);
+            
+            setTimeout(() => {
+              if (subtext2Ref.current) {
+                animateElement(subtext2Ref.current, 900);
+              }
+            }, 1000);
+          }
+          
+          // Disconnect observer after animation is triggered
+          observer.disconnect();
+        }
+      });
+    };
+    
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    if (badgeRef.current) {
+      observer.observe(badgeRef.current);
+    }
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   
   return (
     <section id="home" className="relative h-screen overflow-hidden">
@@ -70,27 +135,45 @@ const HeroSection = () => {
       {/* Dark overlay with reduced opacity */}
       <div className="absolute inset-0 bg-black/25 z-10"></div>
       
-      {/* Text content layer */}
+      {/* Text content layer with scroll-based animations */}
       <div className="relative z-20 flex h-full items-center">
         <div className="container mx-auto px-6 py-20">
           <div className="max-w-2xl ml-auto mr-0 text-right">
-            {/* Badge text */}
-            <div className="inline-block px-4 py-2 border border-white border-opacity-60 rounded-full mb-6">
+            {/* Badge text - First to appear */}
+            <div 
+              className="inline-block px-4 py-2 border border-white border-opacity-60 rounded-full mb-6 opacity-0 translate-y-10"
+              id="badge-text"
+              ref={badgeRef}
+            >
               <p className="text-sm font-inter font-medium text-white">
                 Cut bills, not corners. Go solar today.
               </p>
             </div>
 
-            {/* Main heading */}
-            <h1 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-[0.02em]">
+            {/* Main heading - Second to appear */}
+            <h1 
+              className="font-poppins text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-[0.02em] opacity-0 translate-y-10"
+              id="main-heading"
+              ref={headingRef}
+            >
               KING POWER SYSTEMS
             </h1>
 
-            {/* Subtext */}
-            <p className="text-white text-base md:text-lg mb-4 font-inter font-normal" style={{ opacity: '0.7' }}>
+            {/* Subtext - Third to appear */}
+            <p 
+              className="text-white text-base md:text-lg mb-4 font-inter font-normal opacity-0 translate-y-10"
+              style={{ opacity: '0.7' }}
+              id="subtext-1"
+              ref={subtext1Ref}
+            >
               Cut bills, boost savings, go green.
             </p>
-            <p className="text-white text-base md:text-lg font-inter font-normal" style={{ opacity: '0.7' }}>
+            <p 
+              className="text-white text-base md:text-lg font-inter font-normal opacity-0 translate-y-10"
+              style={{ opacity: '0.7' }}
+              id="subtext-2"
+              ref={subtext2Ref}
+            >
               Solar made easy, affordable & future-ready.
             </p>
           </div>
