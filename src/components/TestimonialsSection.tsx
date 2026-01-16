@@ -47,7 +47,7 @@ const TestimonialsSection = () => {
         backgroundImage: `url(${clientsBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-dark/30" />
