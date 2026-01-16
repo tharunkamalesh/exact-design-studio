@@ -96,17 +96,11 @@ const ServicesSection = () => {
         </div>
 
         {/* Reduced card sizes and increased spacing */}
-        <div className="flex flex-col md:flex-row items-stretch justify-center gap-6 mt-12 min-h-[350px]">
-          {services.map((service) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          {services.slice(0, 3).map((service) => (  // Only showing first 3 cards as requested
             <div
               key={service.id}
-              className={`relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-500 ease-in-out ${
-                activeCard === service.id
-                  ? 'md:flex-[2] flex-1'
-                  : 'md:flex-1 flex-shrink-0'
-              } min-h-[300px] md:min-h-[350px]`}
-              onMouseEnter={() => setActiveCard(service.id)}
-              onMouseLeave={() => setActiveCard(null)}
+              className="relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-500 ease-in-out flex-1 min-h-[350px] md:min-h-[400px]"
               style={{
                 backgroundImage: `url(${service.image})`,
                 backgroundSize: 'cover',
@@ -121,11 +115,7 @@ const ServicesSection = () => {
                   {service.title}
                 </h3>
 
-                <div
-                  className={`transition-all duration-500 overflow-hidden ${
-                    activeCard === service.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
+                <div className="max-h-96 opacity-100 transition-all duration-500 overflow-hidden">
                   <h4 className="font-playfair text-xl md:text-2xl text-primary-foreground font-bold mb-4 mt-4" 
                       style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
                     {service.heading}

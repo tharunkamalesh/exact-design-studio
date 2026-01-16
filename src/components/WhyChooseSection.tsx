@@ -1,5 +1,6 @@
 import { useOnScreen } from "../hooks/useOnScreen";
 import { useState, useEffect } from "react";
+import whyBg from "../assets/why.jpg";
 
 const stats = [
   { value: "200", label: "Solar Panels Installed" },
@@ -25,12 +26,6 @@ const keyStrengths = [
     title: "Reliable Power Solutions",
     value: "",
     description: "High-quality products with professional installation and consistent performance.",
-    bgColor: "bg-gray-50"
-  },
-  {
-    title: "Sustainable & Efficient",
-    value: "",
-    description: "Eco-friendly technologies that save energy and reduce costs.",
     bgColor: "bg-gray-50"
   }
 ];
@@ -71,10 +66,10 @@ const StatCounter = ({ value, suffix, label, index, isVisible }) => {
         transitionDelay: `${index * 200}ms`
       }}
     >
-      <div className="text-4xl md:text-5xl font-bold text-navy-dark mb-2">
+      <div className="text-4xl md:text-5xl font-bold text-white mb-2">
         {isVisible ? count : 0}{suffix}
       </div>
-      <div className="font-georgia text-[16px] md:text-[18px] text-gray-700">
+      <div className="font-georgia text-[16px] md:text-[18px] text-white">
         {label}
       </div>
     </div>
@@ -98,15 +93,24 @@ const WhyChooseSection = () => {
   return (
     <section 
       id="why-choose"
-      className="py-20 bg-white"
+      className="py-20 bg-white relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${whyBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#ffffff', // fallback color
+      }}
     >
-      <div ref={containerRef} className="container mx-auto px-6">
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div ref={containerRef} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="font-georgia text-[32px] md:text-[42px] font-bold mb-6 text-navy-dark">
+          <h2 className="font-georgia text-[32px] md:text-[42px] font-bold mb-6 text-white">
             Why Choose Us
           </h2>
-          <p className="font-georgia text-[16px] md:text-[18px] text-gray-700 leading-relaxed max-w-2xl mx-auto">
+          <p className="font-georgia text-[16px] md:text-[18px] text-white leading-relaxed max-w-2xl mx-auto">
             We combine decades of industry expertise with innovative solutions to deliver exceptional results that exceed expectations.
           </p>
         </div>
@@ -131,44 +135,21 @@ const WhyChooseSection = () => {
         
         {/* Key Strengths Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {keyStrengths.slice(0, 2).map((strength, index) => {
+          {keyStrengths.map((strength, index) => {
             return (
               <div 
                 key={index}
-                className={`p-8 rounded-2xl border-2 border-gray-300 transition-all duration-500 hover:bg-black hover:text-white group ${strength.bgColor} ${(animateCards && isVisible) ? 'animate-fade-in-up' : ''}`}
+                className={`p-8 rounded-2xl border-2 border-gray-300 transition-all duration-500 hover:bg-black hover:text-white group bg-white bg-opacity-90 ${(animateCards && isVisible) ? 'animate-fade-in-up' : ''}`}
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <div className="flex flex-col items-center text-center h-full">
-                  <div className="text-4xl md:text-5xl font-bold text-navy-dark mb-3 group-hover:text-white">
+                  <div className="text-4xl md:text-5xl font-bold text-white mb-3 group-hover:text-white">
                     {strength.value}
                   </div>
-                  <h3 className="font-georgia text-[20px] md:text-[22px] font-semibold text-navy-dark mb-3 group-hover:text-white">
+                  <h3 className="font-georgia text-[20px] md:text-[22px] font-semibold text-white mb-3 group-hover:text-white">
                     {strength.title}
                   </h3>
-                  <p className="font-georgia text-[15px] md:text-[16px] text-gray-700 leading-relaxed group-hover:text-white">
-                    {strength.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* Trust Indicators */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {keyStrengths.slice(2).map((strength, index) => {
-            const adjustedIndex = index + 2; // Adjust index for animation delay
-            return (
-              <div 
-                key={adjustedIndex}
-                className={`p-8 rounded-2xl border-2 border-gray-300 transition-all duration-500 hover:bg-black hover:text-white group ${strength.bgColor} ${(animateCards && isVisible) ? 'animate-fade-in-up' : ''}`}
-                style={{ animationDelay: `${adjustedIndex * 150}ms` }}
-              >
-                <div className="flex flex-col items-center text-center h-full">
-                  <h3 className="font-georgia text-[20px] md:text-[22px] font-semibold text-navy-dark mb-3 group-hover:text-white">
-                    {strength.title}
-                  </h3>
-                  <p className="font-georgia text-[15px] md:text-[16px] text-gray-700 leading-relaxed group-hover:text-white">
+                  <p className="font-georgia text-[15px] md:text-[16px] text-white leading-relaxed group-hover:text-white">
                     {strength.description}
                   </p>
                 </div>
