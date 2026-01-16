@@ -14,6 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
+        georgia: ["Georgia", "serif"],
         playfair: ["Playfair Display", "serif"],
         poppins: ["Poppins", "sans-serif"],
       },
