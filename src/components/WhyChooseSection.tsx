@@ -1,4 +1,4 @@
-import aboutUsBg from '@/assets/about-us.jpeg';
+
 
 const features = [
   {
@@ -37,16 +37,8 @@ const WhyChooseSection = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen py-20"
-      style={{
-        backgroundImage: `url(${aboutUsBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      className="min-h-screen py-20 bg-white"
     >
-      {/* Very light dark overlay (5-8% opacity) for text readability */}
-      <div className="absolute inset-0 bg-black/5" />
 
       <div className="relative z-10 container mx-auto px-6">
         <div className="max-w-4xl mb-16">

@@ -76,7 +76,7 @@ const ServicesSection = () => {
         backgroundImage: `url(${ourSolarServicesBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+
       }}
     >
       {/* Reduced overlay opacity to 10-15% for better background visibility */}
