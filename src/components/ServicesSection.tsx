@@ -1,66 +1,93 @@
 import { useState } from 'react';
-import ourSolarServicesBg from '@/assets/our solar services.jpeg';
+import servicesBg from '@/assets/services-bg.jpg';
 import serviceSolarPanels from '@/assets/service-solar-panels.jpg';
-import serviceInverters from '@/assets/service-inverters.jpg';
-import serviceIndustrial from '@/assets/service-industrial.jpg';
-import serviceInstallation from '@/assets/service-installation.jpg';
+import inverterImg from '@/assets/Solar inveter.jpg';
+import pumpImg from '@/assets/Solar Water Pumps.jpg';
+import industrialImg from '@/assets/service-industrial.jpg';
+import onlineUpsImg from '@/assets/Online UPS.webp';
+import batteriesImg from '@/assets/Batteries.jpg';
+import upsImg from '@/assets/ups.jpg';
+import stabilizersImg from '@/assets/Stabilizers.jpg';
+import vfdImg from '@/assets/VFD Drives.webp';
+
+interface SubService {
+  title: string;
+  image: string;
+  description: string;
+}
 
 interface ServiceCard {
   id: number;
   title: string;
   image: string;
-  heading: string;
-  content: string[];
+  description: string;
+  details?: string[];
+  subServices?: SubService[];
 }
 
 const services: ServiceCard[] = [
   {
     id: 1,
-    title: 'Solar Panels & Water Pumps',
+    title: 'Solar Power Solutions',
     image: serviceSolarPanels,
-    heading: 'Solar Panels & Pumping Solutions',
-    content: [
-      '500-725 Wp Solar Panels (DCR / Non-DCR), Bifacial & N-Type panels.',
-      'Brands: Novasys, Premier, Loom',
-      'Solar Water Pumps with PLDC Motor/Pump (450-725 Wp).',
-      'Bifacial & N-Type Panels, Internal/External Drives.',
-      'Reliable solar energy generation for homes, farms & industries.',
+    description: 'Comprehensive solar energy systems including panels, pumps, and street lights.',
+    subServices: [
+      {
+        title: 'Solar Inverter',
+        image: inverterImg,
+        description: 'Advanced power conversion for maximum efficiency.'
+      },
+      {
+        title: 'Solar Panel',
+        image: serviceSolarPanels,
+        description: 'High-performance PV modules for clean energy.'
+      },
+      {
+        title: 'Solar Water Pump',
+        image: pumpImg,
+        description: 'Reliable water solutions powered by the sun.'
+      },
     ],
   },
   {
     id: 2,
-    title: 'Inverters, UPS & Batteries',
-    image: serviceInverters,
-    heading: 'Power Backup & Energy Storage',
-    content: [
-      'UPS/Inverters from Microtek, Exide, Amaron, Luminous',
-      'Solar Inverters: DEYE, VSOLE, EVVO, POLYCOB (4-150 kWp String Inverters)',
-      'Batteries: Lead-acid (Microtek, Exide) + Lithium batteries',
-      'Complete backup & storage systems for uninterrupted power.',
+    title: 'Power Backup Systems',
+    image: inverterImg,
+    description: 'Reliable energy storage and backup solutions for uninterrupted operations.',
+    subServices: [
+      {
+        title: 'Online UPS',
+        image: onlineUpsImg,
+        description: 'Uninterrupted power for critical industrial systems.'
+      },
+      {
+        title: 'Batteries',
+        image: batteriesImg,
+        description: 'Deep-cycle solar batteries for long-lasting backup.'
+      },
+      {
+        title: 'UPS',
+        image: upsImg,
+        description: 'Reliable power protection for home and office.'
+      }
     ],
   },
   {
     id: 3,
-    title: 'Industrial Power Systems',
-    image: serviceIndustrial,
-    heading: 'Stabilizers & Industrial Drives',
-    content: [
-      'Stabilizers by Krykard (1 kW – 500 kVA, Domestic & Industrial)',
-      'AC Drives / VFD for Industrial Motors (PLDC in-built & external drives)',
-      'Online UPS: Branded SMF, Exide, Amaron',
-      'High-performance solutions for stable and efficient industrial operations.',
-    ],
-  },
-  {
-    id: 4,
-    title: 'Installation & Support',
-    image: serviceInstallation,
-    heading: 'Professional Installation',
-    content: [
-      'Expert installation services for all solar and power systems',
-      'Comprehensive after-sales support and maintenance',
-      'Training and guidance for system operation',
-      'Warranty support and quick response times',
+    title: 'Power Conditioning & Control',
+    image: industrialImg,
+    description: 'Precision control and stable power for heavy industrial machinery.',
+    subServices: [
+      {
+        title: 'Stabilizers',
+        image: stabilizersImg,
+        description: 'Digital and servo stabilizers for voltage consistency.'
+      },
+      {
+        title: 'VFD Drives',
+        image: vfdImg,
+        description: 'Advanced motor control and energy management.'
+      }
     ],
   },
 ];
@@ -71,63 +98,109 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="relative min-h-screen py-20"
+      className="relative min-h-screen py-24"
       style={{
-        backgroundImage: `url(${ourSolarServicesBg})`,
+        backgroundImage: `url(${servicesBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-
       }}
     >
-      {/* Reduced overlay opacity to 10-15% for better background visibility */}
-      <div className="absolute inset-0 bg-black/10" />
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-black/20" />
 
       <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl text-navy-dark font-bold mb-6" 
-              style={{ textShadow: '0 1px 3px rgba(255,255,255,0.5)' }}>
+        <div className="text-center mb-20">
+          <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-navy-dark font-bold mb-6 tracking-tight"
+            style={{ textShadow: '0 2px 4px rgba(255,255,255,0.6)' }}>
             Our Solar Services
           </h2>
-          <p className="text-navy/80 text-sm md:text-base max-w-2xl mx-auto" 
-             style={{ textShadow: '0 1px 2px rgba(255,255,255,0.3)' }}>
-            There are many powerful solutions we offer to support homes, businesses, and industries
-            with reliable, efficient, and sustainable energy systems.
+          <div className="w-24 h-1 bg-primary mx-auto mb-8 rounded-full" />
+          <p className="text-navy/90 text-lg md:text-xl max-w-3xl mx-auto font-medium"
+            style={{ textShadow: '0 1px 2px rgba(255,255,255,0.4)' }}>
+            Empowering your future with sustainable, efficient, and reliable solar energy solutions.
           </p>
         </div>
 
-        {/* Reduced card sizes and increased spacing */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {services.slice(0, 3).map((service) => (  // Only showing first 3 cards as requested
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          {services.map((service) => (
             <div
               key={service.id}
-              className="relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-500 ease-in-out flex-1 min-h-[350px] md:min-h-[400px]"
-              style={{
-                backgroundImage: `url(${service.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
+              onClick={() => setActiveCard(activeCard === service.id ? null : service.id)}
+              className={`group relative overflow-hidden rounded-3xl h-[500px] md:h-[600px] shadow-2xl transition-all duration-700 cursor-pointer
+                ${activeCard === service.id ? 'ring-4 ring-primary ring-inset scale-[1.02]' : 'hover:shadow-primary/20'}
+              `}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/80 via-navy-dark/30 to-transparent" />
+              {/* Main Background Image */}
+              <div
+                className={`absolute inset-0 transition-transform duration-1000 ${activeCard === service.id ? 'scale-110 blur-[2px]' : 'group-hover:scale-110 group-hover:blur-[2px]'}`}
+                style={{
+                  backgroundImage: `url("${service.image}")`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              />
 
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="font-playfair text-lg md:text-xl text-primary-foreground font-semibold mb-2" 
-                    style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+              {/* Default State Layer (Base Layer) */}
+              <div className={`absolute inset-0 p-8 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t from-black/95 via-black/40 to-transparent
+                ${activeCard === service.id ? 'opacity-0 translate-y-[-20px]' : 'opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-[-20px]'}
+              `}>
+                <h3 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 text-center drop-shadow-lg leading-tight">
                   {service.title}
                 </h3>
+                <p className="text-white/90 text-center font-medium line-clamp-2">
+                  {service.description}
+                </p>
+              </div>
 
-                <div className="max-h-96 opacity-100 transition-all duration-500 overflow-hidden">
-                  <h4 className="font-playfair text-xl md:text-2xl text-primary-foreground font-bold mb-4 mt-4" 
-                      style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
-                    {service.heading}
-                  </h4>
-                  <ul className="space-y-2">
-                    {service.content.map((item, index) => (
-                      <li key={index} className="text-primary-foreground/90 text-sm" 
-                          style={{ textShadow: '0 1px 1px rgba(0,0,0,0.3)' }}>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+              {/* Hover Page Layer (The "New Page" within the card) */}
+              <div className={`absolute inset-0 bg-black/85 backdrop-blur-sm p-6 flex flex-col transition-all duration-700 ease-in-out
+                ${activeCard === service.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0'}
+              `}>
+                <div className="text-center mb-6">
+                  <h3 className="font-playfair text-xl md:text-2xl font-bold text-primary mb-2">
+                    {service.title}
+                  </h3>
+                  <div className="w-12 h-1 bg-primary mx-auto rounded-full" />
+                </div>
+
+                <div className="flex-1 flex flex-col justify-center space-y-4">
+                  {service.subServices ? (
+                    service.subServices.map((sub, index) => (
+                      <div
+                        key={index}
+                        className="relative flex-1 group/sub overflow-hidden rounded-2xl border border-white/20 transition-all duration-500 hover:scale-[1.02] shadow-xl bg-slate-900"
+                      >
+                        <div
+                          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/sub:scale-110"
+                          style={{ backgroundImage: `url("${sub.image}")` }}
+                        />
+                        {/* Subtle overlay only for text readability */}
+                        <div className="absolute inset-0 bg-black/20 group-hover/sub:bg-black/10 transition-colors duration-500" />
+
+                        <div className="absolute inset-0 flex flex-col justify-center px-6">
+                          <h4 className="text-white text-sm md:text-base font-bold tracking-wide uppercase mb-1"
+                            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.9)' }}>
+                            {sub.title}
+                          </h4>
+                          <p className="text-white text-[10px] md:text-xs font-semibold line-clamp-1"
+                            style={{ textShadow: '0 1px 3px rgba(0,0,0,0.9)' }}>
+                            {sub.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="space-y-3">
+                      {service.details?.map((detail, index) => (
+                        <div key={index} className="flex items-center p-3 bg-white/10 rounded-xl backdrop-blur-md border border-white/10">
+                          <span className="w-2 h-2 bg-primary rounded-full mr-3 shrink-0 shadow-[0_0_10px_rgba(var(--primary),0.8)]" />
+                          <span className="text-xs md:text-sm font-semibold text-white/95">
+                            {detail}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import clientsBg from '@/assets/clients-bg.jpg';
 import clientAvatar from '@/assets/client-avatar.jpg';
 
@@ -37,6 +37,14 @@ const testimonials: Testimonial[] = [
 const TestimonialsSection = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const testimonial = testimonials[activeTestimonial];
 
   return (
@@ -57,15 +65,26 @@ const TestimonialsSection = () => {
           Clients
         </h2>
 
-        <div className="flex justify-center items-center min-h-[60vh]">
-          <div className="bg-primary-foreground/95 rounded-3xl p-8 md:p-12 max-w-md text-center shadow-2xl">
-            <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-sky-blue">
-              <img
-                src={testimonial.image}
-                alt={testimonial.author}
-                className="w-full h-full object-cover"
+        <div className="flex justify-center items-center min-h-[60vh] relative">
+          {/* Decorative Wave */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] md:w-[120%] -z-10 pointer-events-none opacity-80">
+            <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+              <path
+                fill="none"
+                stroke="#FFD700"
+                strokeWidth="15"
+                strokeLinecap="round"
+                d="M0,160 C320,300,420,0,640,160 C860,320,1120,0,1440,160"
+                className="path-wave"
               />
-            </div>
+            </svg>
+          </div>
+
+          <div
+            key={activeTestimonial}
+            className="bg-primary-foreground/95 rounded-3xl p-8 md:p-12 max-w-md text-center shadow-2xl relative z-10 animate-in fade-in slide-in-from-left-20 duration-1000 ease-in-out"
+          >
+            {/* Profile picture removed */}
 
             <p className="text-navy text-sm md:text-base leading-relaxed mb-6 italic">
               "{testimonial.text}"
@@ -82,9 +101,8 @@ const TestimonialsSection = () => {
             <button
               key={index}
               onClick={() => setActiveTestimonial(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                activeTestimonial === index ? 'bg-primary-foreground' : 'bg-primary-foreground/40'
-              }`}
+              className={`w-3 h-3 rounded-full transition-all ${activeTestimonial === index ? 'bg-primary-foreground' : 'bg-primary-foreground/40'
+                }`}
             />
           ))}
         </div>
