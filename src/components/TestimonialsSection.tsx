@@ -61,8 +61,8 @@ const TestimonialsSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-dark/30" />
 
       <div className="relative z-10 container mx-auto px-6">
-        <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-gold font-bold italic mb-16">
-          Clients
+        <h2 className="text-gold italic mb-16 uppercase">
+          Our Clients
         </h2>
 
         <div className="flex justify-center items-center min-h-[60vh] relative">
@@ -82,16 +82,16 @@ const TestimonialsSection = () => {
 
           <div
             key={activeTestimonial}
-            className="bg-primary-foreground/95 rounded-3xl p-8 md:p-12 max-w-md text-center shadow-2xl relative z-10 animate-in fade-in slide-in-from-left-20 duration-1000 ease-in-out"
+            className="bg-black/80 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-12 max-w-md text-center shadow-2xl relative z-10 animate-in fade-in slide-in-from-left-20 duration-1000 ease-in-out"
           >
             {/* Profile picture removed */}
 
-            <p className="text-navy text-sm md:text-base leading-relaxed mb-6 italic">
+            <p className="text-white mb-6 italic">
               "{testimonial.text}"
             </p>
 
-            <p className="text-gold font-semibold text-sm">
-              {testimonial.author}, {testimonial.role}
+            <p className="text-gold font-bold text-xs uppercase tracking-widest">
+              {testimonial.author} | {testimonial.role}
             </p>
           </div>
         </div>

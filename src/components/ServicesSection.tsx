@@ -110,13 +110,11 @@ const ServicesSection = () => {
 
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-20">
-          <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-navy-dark font-bold mb-6 tracking-tight"
-            style={{ textShadow: '0 2px 4px rgba(255,255,255,0.6)' }}>
+          <h2 className="text-white mb-6">
             Our Solar Services
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-8 rounded-full" />
-          <p className="text-navy/90 text-lg md:text-xl max-w-3xl mx-auto font-medium"
-            style={{ textShadow: '0 1px 2px rgba(255,255,255,0.4)' }}>
+          <p className="text-white max-w-3xl mx-auto">
             Empowering your future with sustainable, efficient, and reliable solar energy solutions.
           </p>
         </div>
@@ -144,10 +142,10 @@ const ServicesSection = () => {
               <div className={`absolute inset-0 p-8 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t from-black/95 via-black/40 to-transparent
                 ${activeCard === service.id ? 'opacity-0 translate-y-[-20px]' : 'opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-[-20px]'}
               `}>
-                <h3 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 text-center drop-shadow-lg leading-tight">
+                <h3 className="text-white mb-4 text-center">
                   {service.title}
                 </h3>
-                <p className="text-white/90 text-center font-medium line-clamp-2">
+                <p className="text-white text-center line-clamp-2">
                   {service.description}
                 </p>
               </div>
@@ -157,7 +155,7 @@ const ServicesSection = () => {
                 ${activeCard === service.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0'}
               `}>
                 <div className="text-center mb-6">
-                  <h3 className="font-playfair text-xl md:text-2xl font-bold text-primary mb-2">
+                  <h3 className="text-primary mb-2 italic">
                     {service.title}
                   </h3>
                   <div className="w-12 h-1 bg-primary mx-auto rounded-full" />

@@ -99,8 +99,7 @@ const ProjectsSection = () => {
       <div className="relative z-10 container mx-auto px-6 pt-12 pb-24 flex flex-col min-h-screen">
         {/* Main Section Heading */}
         <div className="text-center mb-16 mt-4 animate-in fade-in slide-in-from-top duration-700">
-          <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6 tracking-tight"
-            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+          <h2 className="text-white mb-6">
             Our Projects
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto rounded-full" />
@@ -109,12 +108,11 @@ const ProjectsSection = () => {
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
           {/* Left Side: Content */}
           <div key={`${project.id}-content`} className="space-y-8 animate-in fade-in slide-in-from-left duration-700">
-            <h3 className="font-playfair text-5xl md:text-8xl text-white font-bold italic tracking-tight drop-shadow-2xl">
+            <h3 className="text-5xl md:text-7xl lg:text-8xl text-white uppercase italic drop-shadow-2xl">
               {project.title}
             </h3>
 
-            <p className="text-white/95 text-base md:text-xl leading-relaxed max-w-lg font-medium tracking-wide"
-              style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+            <p className="text-white max-w-lg">
               {project.description}
             </p>
           </div>
